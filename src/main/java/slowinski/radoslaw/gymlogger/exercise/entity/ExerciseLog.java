@@ -15,9 +15,6 @@ public class ExerciseLog {
     @OneToMany
     private List<SeriesLog> seriesLogs;
 
-    public ExerciseLog() {
-    }
-
     public Exercise getExercise() {
         return exercise;
     }

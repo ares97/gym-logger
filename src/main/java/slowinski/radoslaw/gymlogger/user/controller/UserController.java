@@ -8,13 +8,14 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.web.bind.annotation.*;
 import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
+import slowinski.radoslaw.gymlogger.utilities.ResourceMappings;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(ResourceMappings.USER_V1)
 public class UserController {
     @Autowired
     private UserService userService;
@@ -29,11 +30,12 @@ public class UserController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers() {
         return userService.findAll();
     }
 
-    @GetMapping(value = "/logout")
+    @GetMapping("/logout")
     public void logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {

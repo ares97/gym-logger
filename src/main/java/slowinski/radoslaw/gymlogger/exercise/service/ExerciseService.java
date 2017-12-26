@@ -8,4 +8,6 @@ public interface ExerciseService {
     List<Exercise> getExercises();
 
     void addExercise(Exercise exercise);
+
+    Exercise findExercise(Long id);
 }

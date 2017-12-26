@@ -8,18 +8,15 @@ import javax.persistence.Id;
 public class Exercise {
     @GeneratedValue
     @Id
-    private Long title;
+    private String title;
 
     private String description;
 
-    public Exercise() {
-    }
-
-    public Long getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Long title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

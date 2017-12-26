@@ -15,14 +15,6 @@ public class SeriesLog {
 
     private int reps;
 
-    public SeriesLog(float weight, int reps) {
-        this.weight = weight;
-        this.reps = reps;
-    }
-
-    public SeriesLog() {
-    }
-
     public Long getId() {
         return id;
     }

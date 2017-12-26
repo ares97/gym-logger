@@ -14,12 +14,19 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Autowired
     ExerciseRepository exerciseRepository;
 
+    @Override
     public List<Exercise> getExercises() {
         return exerciseRepository.findAll();
     }
 
+    @Override
     public void addExercise(Exercise exercise) {
         exerciseRepository.save(exercise);
+    }
+
+    @Override
+    public Exercise findExercise(Long id) {
+        return exerciseRepository.findOne(id);
     }
 
 }
