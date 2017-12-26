@@ -1,9 +1,6 @@
 package slowinski.radoslaw.gymlogger.exercise.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,6 +9,7 @@ public class ExerciseLog {
     @Id
     private Long id;
 
+    @ManyToOne
     private Exercise exercise;
 
     @OneToMany
