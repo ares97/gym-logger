@@ -1,8 +1,10 @@
 package slowinski.radoslaw.gymlogger.user.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -12,12 +14,10 @@ public class User {
     @Id
     private Long id;
 
+    @NotNull
     private String username;
+    @NotNull
     private String password;
-
-    @Transient
-    @JsonIgnore
-    private String passwordConfirm;
 
     private String role;
 
@@ -27,7 +27,6 @@ public class User {
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
-        this.passwordConfirm = password;
         this.role = role;
     }
 
@@ -61,14 +60,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
 }
