@@ -22,10 +22,10 @@ public class ExerciseController {
         return exerciseService.getExercises();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{title}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getExcersise(@PathVariable Long id) {
-        Exercise exercise = exerciseService.findExercise(id);
+    public ResponseEntity<?> getExercise(@PathVariable String title) {
+        Exercise exercise = exerciseService.findExerciseByTitle(title);
         if (exercise == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exercise, HttpStatus.OK);

@@ -25,8 +25,8 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise findExercise(Long id) {
-        return exerciseRepository.findOne(id);
+    public Exercise findExerciseByTitle(String title) {
+        return exerciseRepository.findByTitleIgnoreCase(title);
     }
 
 }

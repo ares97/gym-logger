@@ -9,5 +9,5 @@ public interface ExerciseService {
 
     void addExercise(Exercise exercise);
 
-    Exercise findExercise(Long id);
+    Exercise findExerciseByTitle(String title);
 }

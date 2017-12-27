@@ -6,5 +6,5 @@ import slowinski.radoslaw.gymlogger.exercise.entity.Exercise;
 
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
-
+    Exercise findByTitleIgnoreCase(String title);
 }
