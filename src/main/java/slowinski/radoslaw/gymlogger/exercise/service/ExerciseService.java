@@ -10,4 +10,6 @@ public interface ExerciseService {
     void addExercise(Exercise exercise);
 
     Exercise findExerciseByTitle(String title);
+
+    Exercise createCustomExercise(String exTitle);
 }

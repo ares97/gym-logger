@@ -22,10 +22,10 @@ public class ExerciseLogController {
         return exerciseLogService.getExerciseLogs();
     }
 
-    @PostMapping
+    @PostMapping("/{exerciseTitle}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addExerciseLog(@RequestBody ExerciseLog exerciseLog) {
-        exerciseLogService.addExerciseLog(exerciseLog);
+    public void addExerciseLog(@PathVariable String exerciseTitle) {
+        exerciseLogService.createExerciseLog(exerciseTitle);
     }
 
 }

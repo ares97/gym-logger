@@ -7,5 +7,7 @@ import java.util.List;
 public interface ExerciseLogService {
     List<ExerciseLog> getExerciseLogs();
 
-    void addExerciseLog(ExerciseLog exerciseLog);
+    void createExerciseLog(String exTitle);
+
+    void updateExerciseLog(ExerciseLog exerciseLog);
 }

@@ -2,7 +2,6 @@ package slowinski.radoslaw.gymlogger.exercise.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import slowinski.radoslaw.gymlogger.exercise.entity.Exercise;
 import slowinski.radoslaw.gymlogger.exercise.service.ExerciseService;
@@ -24,11 +23,8 @@ public class ExerciseController {
 
     @GetMapping("/{title}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getExercise(@PathVariable String title) {
-        Exercise exercise = exerciseService.findExerciseByTitle(title);
-        if (exercise == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(exercise, HttpStatus.OK);
+    public Exercise getExercise(@PathVariable String title) {
+        return exerciseService.findExerciseByTitle(title);
     }
 
     @PostMapping
