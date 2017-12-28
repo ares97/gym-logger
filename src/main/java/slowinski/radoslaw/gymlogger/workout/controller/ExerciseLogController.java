@@ -1,16 +1,16 @@
-package slowinski.radoslaw.gymlogger.exercise.controller;
+package slowinski.radoslaw.gymlogger.workout.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import slowinski.radoslaw.gymlogger.exercise.entity.ExerciseLog;
-import slowinski.radoslaw.gymlogger.exercise.service.ExerciseLogService;
-import slowinski.radoslaw.gymlogger.utilities.ResourceMappings;
+import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
+import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.service.ExerciseLogService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(ResourceMappings.EXERCISE_LOG_V1)
+@RequestMapping(ApiMappings.EXERCISE_LOG_V1)
 public class ExerciseLogController {
 
     @Autowired
@@ -27,5 +27,6 @@ public class ExerciseLogController {
     public void addExerciseLog(@PathVariable String exerciseTitle) {
         exerciseLogService.createExerciseLog(exerciseTitle);
     }
+
 
 }

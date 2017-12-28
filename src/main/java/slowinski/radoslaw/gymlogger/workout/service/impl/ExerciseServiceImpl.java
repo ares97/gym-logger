@@ -1,11 +1,11 @@
-package slowinski.radoslaw.gymlogger.exercise.service.impl;
+package slowinski.radoslaw.gymlogger.workout.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import slowinski.radoslaw.gymlogger.exercise.entity.Exercise;
-import slowinski.radoslaw.gymlogger.exercise.exception.ExerciseConflictException;
-import slowinski.radoslaw.gymlogger.exercise.repository.ExerciseRepository;
-import slowinski.radoslaw.gymlogger.exercise.service.ExerciseService;
+import slowinski.radoslaw.gymlogger.workout.entity.Exercise;
+import slowinski.radoslaw.gymlogger.workout.exception.ExerciseConflictException;
+import slowinski.radoslaw.gymlogger.workout.repository.ExerciseRepository;
+import slowinski.radoslaw.gymlogger.workout.service.ExerciseService;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public void addExercise(Exercise exercise) {
         if (findExerciseByTitle(exercise.getTitle()) != null)
-            throw new ExerciseConflictException("exercise with title '" + exercise.getTitle() + "' already exists");
+            throw new ExerciseConflictException("workout with title '" + exercise.getTitle() + "' already exists");
         exerciseRepository.save(exercise);
     }
 
@@ -36,7 +36,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     public Exercise createCustomExercise(String exTitle) {
         Exercise exercise = new Exercise();
         exercise.setTitle(exTitle);
-        exercise.setDescription("custom exercise");
+        exercise.setDescription("custom workout");
         exerciseRepository.saveAndFlush(exercise);
         return exercise;
     }

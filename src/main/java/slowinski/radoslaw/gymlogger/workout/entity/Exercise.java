@@ -1,4 +1,4 @@
-package slowinski.radoslaw.gymlogger.exercise.entity;
+package slowinski.radoslaw.gymlogger.workout.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

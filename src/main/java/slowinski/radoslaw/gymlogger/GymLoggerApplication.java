@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import slowinski.radoslaw.gymlogger.exercise.entity.Exercise;
-import slowinski.radoslaw.gymlogger.exercise.entity.ExerciseLog;
-import slowinski.radoslaw.gymlogger.exercise.entity.SeriesLog;
-import slowinski.radoslaw.gymlogger.exercise.repository.ExerciseLogRepository;
-import slowinski.radoslaw.gymlogger.exercise.repository.ExerciseRepository;
-import slowinski.radoslaw.gymlogger.exercise.repository.SeriesLogRepository;
 import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
+import slowinski.radoslaw.gymlogger.workout.entity.Exercise;
+import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
+import slowinski.radoslaw.gymlogger.workout.repository.ExerciseLogRepository;
+import slowinski.radoslaw.gymlogger.workout.repository.ExerciseRepository;
+import slowinski.radoslaw.gymlogger.workout.repository.SeriesLogRepository;
 
 import java.util.Arrays;
 

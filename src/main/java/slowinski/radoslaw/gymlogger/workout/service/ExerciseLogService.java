@@ -1,6 +1,6 @@
-package slowinski.radoslaw.gymlogger.exercise.service;
+package slowinski.radoslaw.gymlogger.workout.service;
 
-import slowinski.radoslaw.gymlogger.exercise.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 
 import java.util.List;
 

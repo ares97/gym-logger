@@ -8,14 +8,14 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.web.bind.annotation.*;
 import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
-import slowinski.radoslaw.gymlogger.utilities.ResourceMappings;
+import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping(ResourceMappings.USER_V1)
+@RequestMapping(ApiMappings.USER_V1)
 public class UserController {
     @Autowired
     private UserService userService;

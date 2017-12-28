@@ -1,7 +1,7 @@
-package slowinski.radoslaw.gymlogger.exercise.repository;
+package slowinski.radoslaw.gymlogger.workout.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import slowinski.radoslaw.gymlogger.exercise.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 
 public interface ExerciseLogRepository extends JpaRepository<ExerciseLog, Long> {
 }

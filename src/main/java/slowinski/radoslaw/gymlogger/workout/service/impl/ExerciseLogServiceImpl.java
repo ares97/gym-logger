@@ -1,12 +1,12 @@
-package slowinski.radoslaw.gymlogger.exercise.service.impl;
+package slowinski.radoslaw.gymlogger.workout.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import slowinski.radoslaw.gymlogger.exercise.entity.Exercise;
-import slowinski.radoslaw.gymlogger.exercise.entity.ExerciseLog;
-import slowinski.radoslaw.gymlogger.exercise.repository.ExerciseLogRepository;
-import slowinski.radoslaw.gymlogger.exercise.service.ExerciseLogService;
-import slowinski.radoslaw.gymlogger.exercise.service.ExerciseService;
+import slowinski.radoslaw.gymlogger.workout.entity.Exercise;
+import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.repository.ExerciseLogRepository;
+import slowinski.radoslaw.gymlogger.workout.service.ExerciseLogService;
+import slowinski.radoslaw.gymlogger.workout.service.ExerciseService;
 
 import java.util.List;
 
