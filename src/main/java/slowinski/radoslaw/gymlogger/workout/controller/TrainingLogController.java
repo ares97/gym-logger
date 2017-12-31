@@ -17,7 +17,6 @@ public class TrainingLogController {
     @Autowired
     TrainingLogService trainingLogService;
 
-
     @GetMapping
     public List<TrainingLog> getTrainingLogs() {
         return trainingLogService.getTrainingLogs();

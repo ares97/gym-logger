@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -24,12 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/user/registration")
+                .antMatchers(ApiMappings.USER_V1 + "/registration")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                //.formLogin().permitAll()
-                //.and()
+                .formLogin().permitAll()
+                .and()
                 .logout().permitAll()
                 .and().csrf().disable();
     }
