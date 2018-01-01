@@ -22,10 +22,13 @@ public class TrainingLogController {
         return trainingLogService.getTrainingLogs();
     }
 
+    @PostMapping("/{trainingLog}")
+    public void addExerciseLogToTrainingLog(@PathVariable TrainingLog trainingLog, @RequestBody ExerciseLog exerciseLog) {
+        trainingLogService.addExerciseLogToTrainingLog(trainingLog, exerciseLog);
+    }
+
     @PostMapping
-    public void addTrainingLog(@RequestBody List<ExerciseLog> exerciseLogs,
-                               @RequestParam(name = "date") LocalDate trainingDate) {
-
-
+    public void addEmptyTrainingLog(@RequestParam LocalDate trainingDate) {
+        trainingLogService.addEmptyTrainingLog(trainingDate);
     }
 }
