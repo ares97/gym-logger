@@ -14,6 +14,7 @@ import slowinski.radoslaw.gymlogger.workout.repository.ExerciseLogRepository;
 import slowinski.radoslaw.gymlogger.workout.repository.SeriesLogRepository;
 import slowinski.radoslaw.gymlogger.workout.repository.TrainingLogRepository;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -34,7 +35,7 @@ public class GymLoggerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User user = new User("admin", "password", "ROLE_USER");
+        User user = new User("user", "test", "ROLE_USER");
         userService.save(user);
 
         ExerciseLog exerciseLog = new ExerciseLog();
@@ -53,8 +54,8 @@ public class GymLoggerApplication implements CommandLineRunner {
         exerciseLogRepository.save(exerciseLog);
 
         TrainingLog trainingLog = new TrainingLog();
+        trainingLog.setTrainingDate(LocalDate.now());
         trainingLog.setExerciseLogs(Arrays.asList(exerciseLog));
         trainingLogRepository.save(trainingLog);
-
     }
 }

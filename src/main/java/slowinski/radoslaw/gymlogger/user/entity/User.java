@@ -1,22 +1,17 @@
 package slowinski.radoslaw.gymlogger.user.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "userProfile")
 public class User {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     private Long id;
 
-    @NotNull
     private String username;
-    @NotNull
+
     private String password;
 
     private String role;
