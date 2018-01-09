@@ -7,6 +7,7 @@ import slowinski.radoslaw.gymlogger.workout.repository.TrainingLogRepository;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingLogService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TrainingLogServiceImpl implements TrainingLogService {
@@ -26,5 +27,10 @@ public class TrainingLogServiceImpl implements TrainingLogService {
         trainingLogRepository.save(trainingLog);
 
         return trainingLog.getId();
+    }
+
+    @Override
+    public List<TrainingLog> getTrainingLogs() {
+        return trainingLogRepository.findAll();
     }
 }

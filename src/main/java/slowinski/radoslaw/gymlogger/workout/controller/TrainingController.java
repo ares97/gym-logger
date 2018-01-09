@@ -11,6 +11,7 @@ import slowinski.radoslaw.gymlogger.workout.exception.WorkoutNotFoundException;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,6 +31,7 @@ public class TrainingController {
     }
 
     @PostMapping("/{trainingLog}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createExerciseLog(
             @RequestParam(name = "exercise", defaultValue = "exercise") String exerciseTitle,
             @PathVariable TrainingLog trainingLog) {
@@ -40,6 +42,7 @@ public class TrainingController {
     }
 
     @PostMapping("/{trainingLog}/{exerciseLog}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addSeriesLog(
             @PathVariable ExerciseLog exerciseLog,
             @RequestParam(name = "reps") Integer reps,
@@ -48,6 +51,11 @@ public class TrainingController {
         if (!Optional.ofNullable(exerciseLog).isPresent())
             throw new WorkoutNotFoundException("no such exercise log available");
         trainingFacade.addSeriesLog(exerciseLog, reps, weight);
+    }
+
+    @GetMapping
+    public List<TrainingLog> getTrainingLogs() {
+        return trainingFacade.getTrainingLogs();
     }
 
 }

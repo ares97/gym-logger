@@ -9,6 +9,7 @@ import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingLogService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TrainingFacadeImpl implements TrainingFacade {
 
@@ -32,5 +33,10 @@ public class TrainingFacadeImpl implements TrainingFacade {
     @Override
     public Long createTrainingLog(LocalDate trainingDate) {
         return trainingLogService.createTrainingLog(trainingDate);
+    }
+
+    @Override
+    public List<TrainingLog> getTrainingLogs() {
+        return trainingLogService.getTrainingLogs();
     }
 }

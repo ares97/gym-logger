@@ -49,7 +49,7 @@ public class GymLoggerApplication implements CommandLineRunner {
         seriesLog2.setWeight(95.0f);
         seriesLogRepository.save(seriesLog);
         seriesLogRepository.save(seriesLog2);
-        
+
         exerciseLog.setSeriesLogs(Arrays.asList(seriesLog, seriesLog2));
         exerciseLogRepository.save(exerciseLog);
 
@@ -57,5 +57,6 @@ public class GymLoggerApplication implements CommandLineRunner {
         trainingLog.setTrainingDate(LocalDate.now());
         trainingLog.setExerciseLogs(Arrays.asList(exerciseLog));
         trainingLogRepository.save(trainingLog);
+
     }
 }
