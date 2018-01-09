@@ -1,6 +1,9 @@
 package slowinski.radoslaw.gymlogger.workout.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -9,18 +12,17 @@ public class ExerciseLog {
     @Id
     private Long id;
 
-    @ManyToOne
-    private Exercise exercise;
+    private String exerciseTitle;
 
     @OneToMany
     private List<SeriesLog> seriesLogs;
 
-    public Exercise getExercise() {
-        return exercise;
+    public String getExerciseTitle() {
+        return exerciseTitle;
     }
 
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
+    public void setExerciseTitle(String exerciseTitle) {
+        this.exerciseTitle = exerciseTitle;
     }
 
     public Long getId() {

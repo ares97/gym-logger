@@ -7,12 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
-import slowinski.radoslaw.gymlogger.workout.entity.Exercise;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
+import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.repository.ExerciseLogRepository;
-import slowinski.radoslaw.gymlogger.workout.repository.ExerciseRepository;
 import slowinski.radoslaw.gymlogger.workout.repository.SeriesLogRepository;
+import slowinski.radoslaw.gymlogger.workout.repository.TrainingLogRepository;
 
 import java.util.Arrays;
 
@@ -26,23 +26,19 @@ public class GymLoggerApplication implements CommandLineRunner {
     @Autowired
     UserService userService;
     @Autowired
-    ExerciseRepository exerciseRepository;
-    @Autowired
     ExerciseLogRepository exerciseLogRepository;
     @Autowired
     SeriesLogRepository seriesLogRepository;
+    @Autowired
+    TrainingLogRepository trainingLogRepository;
+
     @Override
     public void run(String... args) {
         User user = new User("admin", "password", "ROLE_USER");
         userService.save(user);
 
-        Exercise exercise = new Exercise();
-        exercise.setDescription("description...");
-        exercise.setTitle("Military Press");
-        exerciseRepository.save(exercise);
-
         ExerciseLog exerciseLog = new ExerciseLog();
-        exerciseLog.setExercise(exercise);
+        exerciseLog.setExerciseTitle("bench press");
 
         SeriesLog seriesLog = new SeriesLog();
         seriesLog.setReps(5);
@@ -56,6 +52,9 @@ public class GymLoggerApplication implements CommandLineRunner {
         exerciseLog.setSeriesLogs(Arrays.asList(seriesLog, seriesLog2));
         exerciseLogRepository.save(exerciseLog);
 
+        TrainingLog trainingLog = new TrainingLog();
+        trainingLog.setExerciseLogs(Arrays.asList(exerciseLog));
+        trainingLogRepository.save(trainingLog);
 
     }
 }

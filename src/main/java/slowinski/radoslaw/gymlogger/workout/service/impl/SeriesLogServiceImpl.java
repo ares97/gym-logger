@@ -17,13 +17,14 @@ public class SeriesLogServiceImpl implements SeriesLogService {
     @Autowired
     ExerciseLogService exerciseLogService;
 
-    @Override
-    public void addSeries(SeriesLog seriesLog, ExerciseLog exerciseLog) {
-        seriesLogRepository.save(seriesLog);
-        addSeriesToExerciseLog(seriesLog, exerciseLog);
-    }
 
-    private void addSeriesToExerciseLog(SeriesLog seriesLog, ExerciseLog exerciseLog) {
+    @Override
+    public void addSeries(ExerciseLog exerciseLog, Integer reps, Float weight) {
+        SeriesLog seriesLog = new SeriesLog();
+        seriesLog.setReps(reps);
+        seriesLog.setWeight(weight);
+        seriesLogRepository.save(seriesLog);
+
         exerciseLog.getSeriesLogs().add(seriesLog);
         exerciseLogService.updateExerciseLog(exerciseLog);
     }

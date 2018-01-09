@@ -2,13 +2,11 @@ package slowinski.radoslaw.gymlogger.workout.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import slowinski.radoslaw.gymlogger.workout.entity.Exercise;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.repository.ExerciseLogRepository;
 import slowinski.radoslaw.gymlogger.workout.service.ExerciseLogService;
-import slowinski.radoslaw.gymlogger.workout.service.ExerciseService;
-
-import java.util.List;
+import slowinski.radoslaw.gymlogger.workout.service.TrainingLogService;
 
 @Service
 public class ExerciseLogServiceImpl implements ExerciseLogService {
@@ -16,19 +14,17 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
     @Autowired
     ExerciseLogRepository exerciseLogRepository;
     @Autowired
-    ExerciseService exerciseService;
+    TrainingLogService trainingLogService;
+
 
     @Override
-    public List<ExerciseLog> getExerciseLogs() {
-        return exerciseLogRepository.findAll();
-    }
+    public void createExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
+        ExerciseLog exerciseLog = new ExerciseLog();
+        exerciseLog.setExerciseTitle(exerciseTitle);
+        exerciseLogRepository.save(exerciseLog);
 
-    @Override
-    public void createExerciseLog(String exerciseTitle) {
-        ExerciseLog exLog = new ExerciseLog();
-        exLog.setExercise(getExerciseForLog(exerciseTitle));
-
-        exerciseLogRepository.save(exLog);
+        trainingLog.getExerciseLogs().add(exerciseLog);
+        trainingLogService.update(trainingLog);
     }
 
     @Override
@@ -36,12 +32,4 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
         exerciseLogRepository.save(exerciseLog);
     }
 
-    private Exercise getExerciseForLog(String exerciseTitle) {
-        Exercise exercise = exerciseService.findExerciseByTitle(exerciseTitle);
-
-        if (exercise == null)
-            exercise = exerciseService.createCustomExercise(exerciseTitle);
-
-        return exercise;
-    }
 }
