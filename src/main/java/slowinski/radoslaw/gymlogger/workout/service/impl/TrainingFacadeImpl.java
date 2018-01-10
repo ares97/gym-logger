@@ -3,6 +3,8 @@ package slowinski.radoslaw.gymlogger.workout.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
+import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
+import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import slowinski.radoslaw.gymlogger.workout.service.ExerciseLogService;
 import slowinski.radoslaw.gymlogger.workout.service.SeriesLogService;
@@ -22,13 +24,13 @@ public class TrainingFacadeImpl implements TrainingFacade {
     private SeriesLogService seriesLogService;
 
     @Override
-    public void addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
-        seriesLogService.addSeries(exerciseLog, reps, weight);
+    public SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
+        return seriesLogService.addSeries(exerciseLog, reps, weight);
     }
 
     @Override
-    public void createExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
-        exerciseLogService.createExerciseLog(exerciseTitle, trainingLog);
+    public ExerciseLogResponse createExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
+        return exerciseLogService.createExerciseLog(exerciseTitle, trainingLog);
     }
 
     @Override

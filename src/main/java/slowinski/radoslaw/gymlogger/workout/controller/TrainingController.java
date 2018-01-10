@@ -9,6 +9,8 @@ import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.exception.WorkoutNotFoundException;
+import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
+import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 
@@ -33,26 +35,29 @@ public class TrainingController {
     }
 
     @PostMapping(ApiMappings.EXERCISE_LOG_MAPPING)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createExerciseLog(
+    public ResponseEntity<ExerciseLogResponse> createExerciseLog(
             @RequestParam(name = "exercise", defaultValue = "exercise") String exerciseTitle,
             @PathVariable TrainingLog trainingLog) {
 
         if (!Optional.ofNullable(trainingLog).isPresent())
             throw new WorkoutNotFoundException("no such training log available");
-        trainingFacade.createExerciseLog(exerciseTitle, trainingLog);
+
+        ExerciseLogResponse logResponse = trainingFacade.createExerciseLog(exerciseTitle, trainingLog);
+        return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
+
     }
 
     @PostMapping(ApiMappings.SERIES_LOG_MAPPING)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addSeriesLog(
+    public ResponseEntity<SeriesLogResponse> addSeriesLog(
             @PathVariable ExerciseLog exerciseLog,
             @RequestParam(name = "reps") Integer reps,
             @RequestParam(name = "weight") Float weight) {
 
         if (!Optional.ofNullable(exerciseLog).isPresent())
             throw new WorkoutNotFoundException("no such exercise log available");
-        trainingFacade.addSeriesLog(exerciseLog, reps, weight);
+
+        SeriesLogResponse logResponse = trainingFacade.addSeriesLog(exerciseLog, reps, weight);
+        return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
     }
 
     @GetMapping

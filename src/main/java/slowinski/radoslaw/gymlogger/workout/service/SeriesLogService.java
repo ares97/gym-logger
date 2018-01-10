@@ -1,8 +1,9 @@
 package slowinski.radoslaw.gymlogger.workout.service;
 
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 
 public interface SeriesLogService {
 
-    void addSeries(ExerciseLog exerciseLog, Integer reps, Float weight);
+    SeriesLogResponse addSeries(ExerciseLog exerciseLog, Integer reps, Float weight);
 }
