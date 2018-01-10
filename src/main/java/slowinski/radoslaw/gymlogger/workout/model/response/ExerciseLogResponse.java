@@ -1,6 +1,5 @@
 package slowinski.radoslaw.gymlogger.workout.model.response;
 
-import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
 import slowinski.radoslaw.gymlogger.workout.model.Links;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public class ExerciseLogResponse {
 
     private String exerciseTitle;
 
-    private List<SeriesLog> seriesLogs;
+    private List<SeriesLogResponse> seriesLogs;
 
     public Long getId() {
         return id;
@@ -39,11 +38,11 @@ public class ExerciseLogResponse {
         this.exerciseTitle = exerciseTitle;
     }
 
-    public List<SeriesLog> getSeriesLogs() {
+    public List<SeriesLogResponse> getSeriesLogs() {
         return seriesLogs;
     }
 
-    public void setSeriesLogs(List<SeriesLog> seriesLogs) {
+    public void setSeriesLogs(List<SeriesLogResponse> seriesLogs) {
         this.seriesLogs = seriesLogs;
     }
 }

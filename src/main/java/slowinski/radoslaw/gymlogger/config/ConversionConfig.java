@@ -15,11 +15,12 @@ import java.util.Set;
 @Configuration
 public class ConversionConfig {
 
-    private Set<Converter> getConverters() {
+    @Bean
+    public Set<Converter> getConverters() {
         Set<Converter> converters = new HashSet<>();
-        converters.add(new TrainingLogToTrainingLogResponseConverter());
-        converters.add(new ExerciseLogToExerciseLogResponseConverter());
         converters.add(new SeriesLogToSeriesLogResponseConverter());
+        converters.add(new ExerciseLogToExerciseLogResponseConverter());
+        converters.add(new TrainingLogToTrainingLogResponseConverter());
 
         return converters;
     }

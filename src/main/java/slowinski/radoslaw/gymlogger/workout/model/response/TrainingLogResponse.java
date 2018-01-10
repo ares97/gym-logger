@@ -1,7 +1,6 @@
 package slowinski.radoslaw.gymlogger.workout.model.response;
 
 
-import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 import slowinski.radoslaw.gymlogger.workout.model.Links;
 
 import java.time.LocalDate;
@@ -13,7 +12,7 @@ public class TrainingLogResponse {
 
     private Links links;
 
-    private List<ExerciseLog> exerciseLogs;
+    private List<ExerciseLogResponse> exerciseLogs;
 
     private LocalDate trainingDate;
 
@@ -33,11 +32,11 @@ public class TrainingLogResponse {
         this.id = id;
     }
 
-    public List<ExerciseLog> getExerciseLogs() {
+    public List<ExerciseLogResponse> getExerciseLogs() {
         return exerciseLogs;
     }
 
-    public void setExerciseLogs(List<ExerciseLog> exerciseLogs) {
+    public void setExerciseLogs(List<ExerciseLogResponse> exerciseLogs) {
         this.exerciseLogs = exerciseLogs;
     }
 
