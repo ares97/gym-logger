@@ -9,4 +9,6 @@ public interface ExerciseLogService {
     ExerciseLogResponse createExerciseLog(String exerciseTitle, TrainingLog trainingLog);
 
     void updateExerciseLog(ExerciseLog exerciseLog);
+
+    ExerciseLogResponse getExerciseLog(Long exerciseId);
 }

@@ -6,4 +6,6 @@ import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 public interface SeriesLogService {
 
     SeriesLogResponse addSeries(ExerciseLog exerciseLog, Integer reps, Float weight);
+
+    SeriesLogResponse getSeriesLog(Long seriesId);
 }

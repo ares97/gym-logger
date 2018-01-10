@@ -13,4 +13,6 @@ public interface TrainingLogService {
     TrainingLogResponse createTrainingLog(LocalDate trainingDate);
 
     List<TrainingLog> getTrainingLogs();
+
+    TrainingLogResponse getTrainingLog(Long trainingId);
 }

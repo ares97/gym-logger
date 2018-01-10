@@ -15,7 +15,6 @@ import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -60,9 +59,21 @@ public class TrainingController {
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public List<TrainingLog> getTrainingLogs() {
-        return trainingFacade.getTrainingLogs();
+    @GetMapping(ApiMappings.TRAINING_LOG_MAPPING + "/{trainingId}")
+    public ResponseEntity<TrainingLogResponse> getTrainingLog(@PathVariable Long trainingId) {
+        TrainingLogResponse logResponse = trainingFacade.getTrainingLog(trainingId);
+        return new ResponseEntity<>(logResponse, HttpStatus.OK);
     }
 
+    @GetMapping(ApiMappings.EXERCISE_LOG_MAPPING + "/{exerciseId}")
+    public ResponseEntity<ExerciseLogResponse> getExerciseLog(@PathVariable Long exerciseId) {
+        ExerciseLogResponse logResponse = trainingFacade.getExerciseLog(exerciseId);
+        return new ResponseEntity<>(logResponse, HttpStatus.OK);
+    }
+
+    @GetMapping(ApiMappings.SERIES_LOG_MAPPING + "/{seriesId}")
+    public ResponseEntity<SeriesLogResponse> getSeriesLog(@PathVariable Long seriesId) {
+        SeriesLogResponse logResponse = trainingFacade.getSeriesLog(seriesId);
+        return new ResponseEntity<>(logResponse, HttpStatus.OK);
+    }
 }

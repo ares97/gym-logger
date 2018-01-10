@@ -17,4 +17,10 @@ public interface TrainingFacade {
     TrainingLogResponse createTrainingLog(LocalDate trainingDate);
 
     List<TrainingLog> getTrainingLogs();
+
+    TrainingLogResponse getTrainingLog(Long trainingId);
+
+    ExerciseLogResponse getExerciseLog(Long exerciseId);
+
+    SeriesLogResponse getSeriesLog(Long seriesId);
 }

@@ -5,10 +5,13 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
+import slowinski.radoslaw.gymlogger.workout.exception.WorkoutNotFoundException;
 import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 import slowinski.radoslaw.gymlogger.workout.repository.SeriesLogRepository;
 import slowinski.radoslaw.gymlogger.workout.service.ExerciseLogService;
 import slowinski.radoslaw.gymlogger.workout.service.SeriesLogService;
+
+import java.util.Optional;
 
 @Service
 public class SeriesLogServiceImpl implements SeriesLogService {
@@ -32,5 +35,14 @@ public class SeriesLogServiceImpl implements SeriesLogService {
         exerciseLogService.updateExerciseLog(exerciseLog);
 
         return conversionService.convert(seriesLog, SeriesLogResponse.class);
+    }
+
+    @Override
+    public SeriesLogResponse getSeriesLog(Long seriesId) {
+        Optional<SeriesLog> seriesLog = Optional.ofNullable(seriesLogRepository.findOne(seriesId));
+
+        return conversionService.convert(seriesLog.orElseThrow(
+                () -> new WorkoutNotFoundException("could not find series log with id#" + seriesId)),
+                SeriesLogResponse.class);
     }
 }

@@ -42,4 +42,19 @@ public class TrainingFacadeImpl implements TrainingFacade {
     public List<TrainingLog> getTrainingLogs() {
         return trainingLogService.getTrainingLogs();
     }
+
+    @Override
+    public TrainingLogResponse getTrainingLog(Long trainingId) {
+        return trainingLogService.getTrainingLog(trainingId);
+    }
+
+    @Override
+    public ExerciseLogResponse getExerciseLog(Long exerciseId) {
+        return exerciseLogService.getExerciseLog(exerciseId);
+    }
+
+    @Override
+    public SeriesLogResponse getSeriesLog(Long seriesId) {
+        return seriesLogService.getSeriesLog(seriesId);
+    }
 }
