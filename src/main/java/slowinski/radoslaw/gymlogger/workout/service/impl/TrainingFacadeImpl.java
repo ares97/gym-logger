@@ -2,6 +2,7 @@ package slowinski.radoslaw.gymlogger.workout.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
@@ -12,7 +13,6 @@ import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingLogService;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class TrainingFacadeImpl implements TrainingFacade {
 
@@ -39,11 +39,6 @@ public class TrainingFacadeImpl implements TrainingFacade {
     }
 
     @Override
-    public List<TrainingLog> getTrainingLogs() {
-        return trainingLogService.getTrainingLogs();
-    }
-
-    @Override
     public TrainingLogResponse getTrainingLog(Long trainingId) {
         return trainingLogService.getTrainingLog(trainingId);
     }
@@ -56,5 +51,20 @@ public class TrainingFacadeImpl implements TrainingFacade {
     @Override
     public SeriesLogResponse getSeriesLog(Long seriesId) {
         return seriesLogService.getSeriesLog(seriesId);
+    }
+
+    @Override
+    public void deleteTrainingLog(TrainingLog trainingLog) {
+        trainingLogService.deleteTrainingLog(trainingLog);
+    }
+
+    @Override
+    public void deleteExerciseLog(ExerciseLog exerciseLog) {
+        exerciseLogService.deleteExerciseLog(exerciseLog);
+    }
+
+    @Override
+    public void deleteSeriesLog(SeriesLog seriesLog) {
+        seriesLogService.deleteSeriesLog(seriesLog);
     }
 }

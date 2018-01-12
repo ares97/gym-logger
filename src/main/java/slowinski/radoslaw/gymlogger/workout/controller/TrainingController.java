@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
+import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.exception.WorkoutNotFoundException;
 import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
@@ -76,4 +77,26 @@ public class TrainingController {
         SeriesLogResponse logResponse = trainingFacade.getSeriesLog(seriesId);
         return new ResponseEntity<>(logResponse, HttpStatus.OK);
     }
+
+    @DeleteMapping(ApiMappings.TRAINING_LOG_MAPPING + "/{trainingLog}")
+    public void deleteTrainingLog(@PathVariable TrainingLog trainingLog) {
+        trainingFacade.deleteTrainingLog(
+                Optional.ofNullable(trainingLog).orElseThrow(
+                        () -> new WorkoutNotFoundException("could find training log with such id")));
+    }
+
+    @DeleteMapping(ApiMappings.EXERCISE_LOG_MAPPING + "/{exerciseLog}")
+    public void deleteExerciseLog(@PathVariable ExerciseLog exerciseLog) {
+        trainingFacade.deleteExerciseLog(
+                Optional.ofNullable(exerciseLog).orElseThrow(
+                        () -> new WorkoutNotFoundException("could find exercise log with such id")));
+    }
+
+    @DeleteMapping(ApiMappings.SERIES_LOG_MAPPING + "/{seriesLog}")
+    public void deleteExerciseLog(@PathVariable SeriesLog seriesLog) {
+        trainingFacade.deleteSeriesLog(
+                Optional.ofNullable(seriesLog).orElseThrow(
+                        () -> new WorkoutNotFoundException("could find series log with such id")));
+    }
+
 }

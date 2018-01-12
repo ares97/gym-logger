@@ -1,9 +1,6 @@
 package slowinski.radoslaw.gymlogger.workout.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,8 +11,19 @@ public class ExerciseLog {
 
     private String exerciseTitle;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true, mappedBy = "exerciseLog")
     private List<SeriesLog> seriesLogs;
+
+    @ManyToOne
+    private TrainingLog trainingLog;
+
+    public TrainingLog getTrainingLog() {
+        return trainingLog;
+    }
+
+    public void setTrainingLog(TrainingLog trainingLog) {
+        this.trainingLog = trainingLog;
+    }
 
     public String getExerciseTitle() {
         return exerciseTitle;

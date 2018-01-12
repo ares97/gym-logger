@@ -29,6 +29,7 @@ public class SeriesLogServiceImpl implements SeriesLogService {
         SeriesLog seriesLog = new SeriesLog();
         seriesLog.setReps(reps);
         seriesLog.setWeight(weight);
+        seriesLog.setExerciseLog(exerciseLog);
         seriesLogRepository.save(seriesLog);
 
         exerciseLog.getSeriesLogs().add(seriesLog);
@@ -44,5 +45,10 @@ public class SeriesLogServiceImpl implements SeriesLogService {
         return conversionService.convert(seriesLog.orElseThrow(
                 () -> new WorkoutNotFoundException("could not find series log with id#" + seriesId)),
                 SeriesLogResponse.class);
+    }
+
+    @Override
+    public void deleteSeriesLog(SeriesLog seriesLog) {
+        seriesLogRepository.delete(seriesLog);
     }
 }

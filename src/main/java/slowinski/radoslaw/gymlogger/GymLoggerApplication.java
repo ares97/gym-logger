@@ -47,16 +47,22 @@ public class GymLoggerApplication implements CommandLineRunner {
         SeriesLog seriesLog2 = new SeriesLog();
         seriesLog2.setReps(4);
         seriesLog2.setWeight(95.0f);
-        seriesLogRepository.save(seriesLog);
-        seriesLogRepository.save(seriesLog2);
+
 
         exerciseLog.setSeriesLogs(Arrays.asList(seriesLog, seriesLog2));
-        exerciseLogRepository.save(exerciseLog);
 
         TrainingLog trainingLog = new TrainingLog();
         trainingLog.setTrainingDate(LocalDate.now());
         trainingLog.setExerciseLogs(Arrays.asList(exerciseLog));
+
+        exerciseLog.setTrainingLog(trainingLog);
+        seriesLog.setExerciseLog(exerciseLog);
+        seriesLog2.setExerciseLog(exerciseLog);
+
         trainingLogRepository.save(trainingLog);
+        exerciseLogRepository.save(exerciseLog);
+        seriesLogRepository.save(seriesLog);
+        seriesLogRepository.save(seriesLog2);
 
     }
 }

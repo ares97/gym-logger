@@ -1,9 +1,6 @@
 package slowinski.radoslaw.gymlogger.workout.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,11 +11,10 @@ public class TrainingLog {
     @Id
     private Long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "trainingLog")
     private List<ExerciseLog> exerciseLogs;
 
     private LocalDate trainingDate;
-
 
     public Long getId() {
         return id;

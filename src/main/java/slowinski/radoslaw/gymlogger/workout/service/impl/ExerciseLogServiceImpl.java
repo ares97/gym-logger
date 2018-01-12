@@ -28,6 +28,7 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
     public ExerciseLogResponse createExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
         ExerciseLog exerciseLog = new ExerciseLog();
         exerciseLog.setExerciseTitle(exerciseTitle);
+        exerciseLog.setTrainingLog(trainingLog);
         exerciseLogRepository.save(exerciseLog);
 
         trainingLog.getExerciseLogs().add(exerciseLog);
@@ -48,6 +49,11 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
         return conversionService.convert(exerciseLog.orElseThrow(
                 () -> new WorkoutNotFoundException("could not find exercise log with id#" + exerciseId)),
                 ExerciseLogResponse.class);
+    }
+
+    @Override
+    public void deleteExerciseLog(ExerciseLog exerciseLog) {
+        exerciseLogRepository.delete(exerciseLog);
     }
 
 }

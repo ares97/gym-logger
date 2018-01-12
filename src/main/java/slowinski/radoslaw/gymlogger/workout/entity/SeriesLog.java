@@ -3,6 +3,7 @@ package slowinski.radoslaw.gymlogger.workout.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class SeriesLog {
@@ -14,6 +15,17 @@ public class SeriesLog {
     private float weight;
 
     private int reps;
+
+    @ManyToOne
+    private ExerciseLog exerciseLog;
+
+    public ExerciseLog getExerciseLog() {
+        return exerciseLog;
+    }
+
+    public void setExerciseLog(ExerciseLog exerciseLog) {
+        this.exerciseLog = exerciseLog;
+    }
 
     public Long getId() {
         return id;

@@ -11,4 +11,6 @@ public interface ExerciseLogService {
     void updateExerciseLog(ExerciseLog exerciseLog);
 
     ExerciseLogResponse getExerciseLog(Long exerciseId);
+
+    void deleteExerciseLog(ExerciseLog exerciseLog);
 }
