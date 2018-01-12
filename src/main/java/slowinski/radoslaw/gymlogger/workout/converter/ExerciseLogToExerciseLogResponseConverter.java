@@ -9,6 +9,7 @@ import slowinski.radoslaw.gymlogger.workout.model.Self;
 import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -25,13 +26,10 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
         Links linksToResponse = getLinksToResponse(source.getId(), source.getTrainingLog().getId());
         exerciseLogResponse.setLinks(linksToResponse);
 
-        Optional.ofNullable(source.getSeriesLogs()).ifPresentOrElse(
-                x -> {
-                    List<SeriesLogResponse> seriesLogResponses = convertIntoSeriesLogResponse(x);
-                    exerciseLogResponse.setSeriesLogs(seriesLogResponses);
-                },
-                () -> exerciseLogResponse.setSeriesLogs(new LinkedList<>())
-        );
+        exerciseLogResponse.setSeriesLogs(
+                Optional.ofNullable(source.getSeriesLogs()).
+                        map(this::convertIntoSeriesLogResponse).
+                        orElse(Collections.emptyList()));
 
         return exerciseLogResponse;
     }
