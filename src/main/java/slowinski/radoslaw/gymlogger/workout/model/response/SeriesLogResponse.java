@@ -12,6 +12,16 @@ public class SeriesLogResponse {
 
     private int reps;
 
+    private Long exerciseLogId;
+
+    public Long getExerciseLogId() {
+        return exerciseLogId;
+    }
+
+    public void setExerciseLogId(Long exerciseLogId) {
+        this.exerciseLogId = exerciseLogId;
+    }
+
     public Long getId() {
         return id;
     }

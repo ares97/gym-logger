@@ -14,6 +14,16 @@ public class ExerciseLogResponse {
 
     private List<SeriesLogResponse> seriesLogs;
 
+    private Long trainingLogId;
+
+    public Long getTrainingLogId() {
+        return trainingLogId;
+    }
+
+    public void setTrainingLogId(Long trainingLogId) {
+        this.trainingLogId = trainingLogId;
+    }
+
     public Long getId() {
         return id;
     }

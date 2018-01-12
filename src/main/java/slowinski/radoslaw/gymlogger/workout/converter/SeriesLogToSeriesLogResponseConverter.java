@@ -16,15 +16,21 @@ public class SeriesLogToSeriesLogResponseConverter implements Converter<SeriesLo
         seriesLogResponse.setId(source.getId());
         seriesLogResponse.setReps(source.getReps());
         seriesLogResponse.setWeight(source.getWeight());
-        seriesLogResponse.setLinks(getLinksToResponse(source.getId()));
+        seriesLogResponse.setExerciseLogId(source.getExerciseLog().getId());
+        Links linksToResponse = getLinksToResponse(source.getId(), source.getExerciseLog().getId(), source.getExerciseLog().getTrainingLog().getId());
+        seriesLogResponse.setLinks(linksToResponse);
 
         return seriesLogResponse;
     }
 
-    private Links getLinksToResponse(Long id) {
+    private Links getLinksToResponse(Long seriesId, Long exerciseId, Long trainingId) {
         Links links = new Links();
         Self self = new Self();
-        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.SERIES_LOG_MAPPING + "/" + id);
+        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.SERIES_LOG_MAPPING.
+                replace("{trainingLog}", trainingId.toString()).
+                replace("{exerciseLog}", exerciseId.toString()) +
+                "/" + seriesId);
+
         links.setSelf(self);
         return links;
     }

@@ -20,8 +20,11 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
     public ExerciseLogResponse convert(ExerciseLog source) {
         ExerciseLogResponse exerciseLogResponse = new ExerciseLogResponse();
         exerciseLogResponse.setId(source.getId());
+        exerciseLogResponse.setTrainingLogId(source.getTrainingLog().getId());
         exerciseLogResponse.setExerciseTitle(source.getExerciseTitle());
-        exerciseLogResponse.setLinks(getLinksToResponse(source.getId()));
+        Links linksToResponse = getLinksToResponse(source.getId(), source.getTrainingLog().getId());
+        exerciseLogResponse.setLinks(linksToResponse);
+
 
         if (Optional.ofNullable(source.getSeriesLogs()).isPresent()) {
             List<SeriesLogResponse> seriesLogResponses = convertIntoSeriesLogResponse((source.getSeriesLogs()));
@@ -42,10 +45,13 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
         return responseLogs;
     }
 
-    private Links getLinksToResponse(Long id) {
+    private Links getLinksToResponse(Long exerciseId, Long trainingId) {
         Links links = new Links();
         Self self = new Self();
-        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.EXERCISE_LOG_MAPPING + "/" + id);
+        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.TRAINING_LOG_MAPPING +
+                ApiMappings.EXERCISE_LOG_MAPPING.
+                        replace("{trainingLog}", trainingId.toString()) + "/" + exerciseId);
+
         links.setSelf(self);
         return links;
     }
