@@ -7,6 +7,7 @@ import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,12 +25,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public void saveUserIfValid(User user) {
+        if (usernameExists(user.getUsername())) {
+            userRepository.save(user);
+        }
+    }
+
+    private boolean usernameExists(String username) {
+        return Optional.ofNullable(userRepository.findByUsername(username)).isPresent();
     }
 }

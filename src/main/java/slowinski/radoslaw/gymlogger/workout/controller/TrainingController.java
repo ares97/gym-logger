@@ -39,10 +39,12 @@ public class TrainingController {
             @RequestParam(name = "exercise", defaultValue = "exercise") String exerciseTitle,
             @PathVariable TrainingLog trainingLog) {
 
-        if (!Optional.ofNullable(trainingLog).isPresent())
-            throw new WorkoutNotFoundException("no such training log available");
+        ExerciseLogResponse logResponse = trainingFacade.createExerciseLog(
+                exerciseTitle,
+                Optional.ofNullable(trainingLog).
+                        orElseThrow(
+                                () -> new WorkoutNotFoundException("could find training log with such id")));
 
-        ExerciseLogResponse logResponse = trainingFacade.createExerciseLog(exerciseTitle, trainingLog);
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
 
     }
@@ -53,10 +55,12 @@ public class TrainingController {
             @RequestParam(name = "reps") Integer reps,
             @RequestParam(name = "weight") Float weight) {
 
-        if (!Optional.ofNullable(exerciseLog).isPresent())
-            throw new WorkoutNotFoundException("no such exercise log available");
+        SeriesLogResponse logResponse = trainingFacade.addSeriesLog(
+                Optional.ofNullable(exerciseLog).
+                        orElseThrow(
+                                () -> new WorkoutNotFoundException("could find exercise log with such id")),
+                reps, weight);
 
-        SeriesLogResponse logResponse = trainingFacade.addSeriesLog(exerciseLog, reps, weight);
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
     }
 

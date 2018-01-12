@@ -23,11 +23,14 @@ public class TrainingLogToTrainingLogResponseConverter implements Converter<Trai
         trainingLogResponse.setLinks(getLinksToResponse(source.getId()));
         trainingLogResponse.setTrainingDate(source.getTrainingDate());
 
-        if (Optional.ofNullable(source.getExerciseLogs()).isPresent()) {
-            List<ExerciseLogResponse> exerciseLogResponses = convertIntoExerciseLogResponse(source.getExerciseLogs());
-            trainingLogResponse.setExerciseLogs(exerciseLogResponses);
-        } else
-            trainingLogResponse.setExerciseLogs(new LinkedList<>());
+        Optional.ofNullable(source.getExerciseLogs()).
+                ifPresentOrElse(
+                        x -> {
+                            List<ExerciseLogResponse> exerciseLogResponses = convertIntoExerciseLogResponse(source.getExerciseLogs());
+                            trainingLogResponse.setExerciseLogs(exerciseLogResponses);
+                        },
+                        () -> trainingLogResponse.setExerciseLogs(new LinkedList<>())
+                );
 
         return trainingLogResponse;
     }

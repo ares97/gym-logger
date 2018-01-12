@@ -25,12 +25,15 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
         Links linksToResponse = getLinksToResponse(source.getId(), source.getTrainingLog().getId());
         exerciseLogResponse.setLinks(linksToResponse);
 
+        Optional.ofNullable(source.getSeriesLogs()).
+                ifPresentOrElse(
+                        x -> {
+                            List<SeriesLogResponse> seriesLogResponses = convertIntoSeriesLogResponse(x);
+                            exerciseLogResponse.setSeriesLogs(seriesLogResponses);
+                        },
+                        () -> exerciseLogResponse.setSeriesLogs(new LinkedList<>())
+                );
 
-        if (Optional.ofNullable(source.getSeriesLogs()).isPresent()) {
-            List<SeriesLogResponse> seriesLogResponses = convertIntoSeriesLogResponse((source.getSeriesLogs()));
-            exerciseLogResponse.setSeriesLogs(seriesLogResponses);
-        } else
-            exerciseLogResponse.setSeriesLogs(new LinkedList<>());
         return exerciseLogResponse;
     }
 

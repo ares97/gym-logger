@@ -13,6 +13,7 @@ import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(ApiMappings.USER_V1)
@@ -24,9 +25,7 @@ public class UserController {
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerUser(@RequestBody User user) {
-        if (userService.findByUsername(user.getUsername()) == null) {
-            userService.save(user);
-        }
+        userService.saveUserIfValid(user);
     }
 
     @GetMapping
@@ -38,9 +37,10 @@ public class UserController {
     @GetMapping("/logout")
     public void logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-
+        Optional.ofNullable(auth).
+                ifPresent(
+                        x -> new SecurityContextLogoutHandler().logout(request, response, x));
     }
+
 }
+
