@@ -35,8 +35,6 @@ public class GymLoggerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User user = new User("user", "test", "ROLE_USER");
-        userService.save(user);
 
         ExerciseLog exerciseLog = new ExerciseLog();
         exerciseLog.setExerciseTitle("bench press");
@@ -63,6 +61,13 @@ public class GymLoggerApplication implements CommandLineRunner {
         exerciseLogRepository.save(exerciseLog);
         seriesLogRepository.save(seriesLog);
         seriesLogRepository.save(seriesLog2);
+
+
+        User user = new User("user", "test", "ROLE_USER");
+        user.setTrainingLogs(Arrays.asList(trainingLog));
+        userService.save(user);
+        User user2 = new User("user2", "test", "ROLE_USER");
+        userService.save(user2);
 
     }
 }

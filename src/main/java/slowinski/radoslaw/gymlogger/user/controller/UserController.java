@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
 import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
+import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,12 @@ public class UserController {
                 ifPresent(
                         x -> new SecurityContextLogoutHandler().logout(request, response, x));
     }
+
+    @GetMapping("/logs")
+    public List<TrainingLogResponse> getTrainingLogs() {
+        return userService.getTrainingLogs();
+    }
+
 
 }
 

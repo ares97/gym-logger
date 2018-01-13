@@ -1,6 +1,10 @@
 package slowinski.radoslaw.gymlogger.user.entity;
 
+import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
+
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "userProfile")
@@ -16,6 +20,9 @@ public class User {
 
     private String role;
 
+    @OneToMany
+    private List<TrainingLog> trainingLogs;
+
     public User() {
     }
 
@@ -23,6 +30,15 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+        trainingLogs = Collections.emptyList();
+    }
+
+    public List<TrainingLog> getTrainingLogs() {
+        return trainingLogs;
+    }
+
+    public void setTrainingLogs(List<TrainingLog> trainingLogs) {
+        this.trainingLogs = trainingLogs;
     }
 
     public String getRole() {
