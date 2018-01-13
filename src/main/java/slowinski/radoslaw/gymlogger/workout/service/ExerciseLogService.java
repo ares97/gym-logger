@@ -10,7 +10,7 @@ public interface ExerciseLogService {
 
     void updateExerciseLog(ExerciseLog exerciseLog);
 
-    ExerciseLogResponse getExerciseLog(Long exerciseId);
+    ExerciseLogResponse getExerciseLogResponse(Long exerciseId);
 
     void deleteExerciseLog(ExerciseLog exerciseLog);
 }

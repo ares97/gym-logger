@@ -35,7 +35,7 @@ public class TrainingLogServiceImpl implements TrainingLogService {
     }
 
     @Override
-    public TrainingLogResponse getTrainingLog(Long trainingId) {
+    public TrainingLogResponse getTrainingLogResponse(Long trainingId) {
         Optional<TrainingLog> log = Optional.ofNullable(trainingLogRepository.findOne(trainingId));
 
         return conversionService.convert(log.orElseThrow(

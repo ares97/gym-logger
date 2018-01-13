@@ -11,7 +11,7 @@ public interface TrainingLogService {
 
     TrainingLogResponse createTrainingLog(LocalDate trainingDate);
 
-    TrainingLogResponse getTrainingLog(Long trainingId);
+    TrainingLogResponse getTrainingLogResponse(Long trainingId);
 
     void deleteTrainingLog(TrainingLog trainingLog);
 }

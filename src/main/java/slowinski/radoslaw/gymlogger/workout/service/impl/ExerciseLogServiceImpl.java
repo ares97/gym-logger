@@ -43,7 +43,7 @@ public class ExerciseLogServiceImpl implements ExerciseLogService {
     }
 
     @Override
-    public ExerciseLogResponse getExerciseLog(Long exerciseId) {
+    public ExerciseLogResponse getExerciseLogResponse(Long exerciseId) {
         Optional<ExerciseLog> exerciseLog = Optional.ofNullable(exerciseLogRepository.findOne(exerciseId));
 
         return conversionService.convert(exerciseLog.orElseThrow(

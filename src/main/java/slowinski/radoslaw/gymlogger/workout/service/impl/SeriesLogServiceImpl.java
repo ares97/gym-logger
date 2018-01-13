@@ -25,7 +25,7 @@ public class SeriesLogServiceImpl implements SeriesLogService {
 
 
     @Override
-    public SeriesLogResponse addSeries(ExerciseLog exerciseLog, Integer reps, Float weight) {
+    public SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
         SeriesLog seriesLog = new SeriesLog();
         seriesLog.setReps(reps);
         seriesLog.setWeight(weight);
@@ -39,7 +39,7 @@ public class SeriesLogServiceImpl implements SeriesLogService {
     }
 
     @Override
-    public SeriesLogResponse getSeriesLog(Long seriesId) {
+    public SeriesLogResponse getSeriesLogResponse(Long seriesId) {
         Optional<SeriesLog> seriesLog = Optional.ofNullable(seriesLogRepository.findOne(seriesId));
 
         return conversionService.convert(seriesLog.orElseThrow(

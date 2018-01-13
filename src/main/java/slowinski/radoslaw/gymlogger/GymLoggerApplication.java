@@ -65,9 +65,9 @@ public class GymLoggerApplication implements CommandLineRunner {
 
         User user = new User("user", "test", "ROLE_USER");
         user.setTrainingLogs(Arrays.asList(trainingLog));
-        userService.save(user);
+        userService.saveUserIfValid(user);
         User user2 = new User("user2", "test", "ROLE_USER");
-        userService.save(user2);
+        userService.saveUserIfValid(user2);
 
     }
 }

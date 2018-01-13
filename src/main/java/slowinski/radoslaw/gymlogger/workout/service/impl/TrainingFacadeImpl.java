@@ -1,6 +1,8 @@
 package slowinski.radoslaw.gymlogger.workout.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import slowinski.radoslaw.gymlogger.user.service.UserService;
 import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
 import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
@@ -13,7 +15,9 @@ import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingLogService;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Component
 public class TrainingFacadeImpl implements TrainingFacade {
 
     @Autowired
@@ -22,10 +26,12 @@ public class TrainingFacadeImpl implements TrainingFacade {
     private ExerciseLogService exerciseLogService;
     @Autowired
     private SeriesLogService seriesLogService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
-        return seriesLogService.addSeries(exerciseLog, reps, weight);
+        return seriesLogService.addSeriesLog(exerciseLog, reps, weight);
     }
 
     @Override
@@ -39,18 +45,18 @@ public class TrainingFacadeImpl implements TrainingFacade {
     }
 
     @Override
-    public TrainingLogResponse getTrainingLog(Long trainingId) {
-        return trainingLogService.getTrainingLog(trainingId);
+    public TrainingLogResponse getTrainingLogResponse(Long trainingId) {
+        return trainingLogService.getTrainingLogResponse(trainingId);
     }
 
     @Override
-    public ExerciseLogResponse getExerciseLog(Long exerciseId) {
-        return exerciseLogService.getExerciseLog(exerciseId);
+    public ExerciseLogResponse getExerciseLogResponse(Long exerciseId) {
+        return exerciseLogService.getExerciseLogResponse(exerciseId);
     }
 
     @Override
-    public SeriesLogResponse getSeriesLog(Long seriesId) {
-        return seriesLogService.getSeriesLog(seriesId);
+    public SeriesLogResponse getSeriesLogResponse(Long seriesId) {
+        return seriesLogService.getSeriesLogResponse(seriesId);
     }
 
     @Override
@@ -66,5 +72,10 @@ public class TrainingFacadeImpl implements TrainingFacade {
     @Override
     public void deleteSeriesLog(SeriesLog seriesLog) {
         seriesLogService.deleteSeriesLog(seriesLog);
+    }
+
+    @Override
+    public List<TrainingLogResponse> getTrainingLogResponses() {
+        return userService.getTrainingLogs();
     }
 }

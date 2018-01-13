@@ -41,16 +41,14 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
             responseLogs.add(converter.convert(log));
         }
 
-
         return responseLogs;
     }
 
     private Links getLinksToResponse(Long exerciseId, Long trainingId) {
         Links links = new Links();
         Self self = new Self();
-        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.TRAINING_LOG_MAPPING +
-                ApiMappings.EXERCISE_LOG_MAPPING.
-                        replace("{trainingLog}", trainingId.toString()) + "/" + exerciseId);
+        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.EXERCISE_LOG_MAPPING.
+                replace("{trainingLog}", trainingId.toString()) + "/" + exerciseId);
 
         links.setSelf(self);
         return links;

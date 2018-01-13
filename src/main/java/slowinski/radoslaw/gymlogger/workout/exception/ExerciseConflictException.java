@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
 public class ExerciseConflictException extends RuntimeException {
+
     public ExerciseConflictException(String message) {
         super(message);
     }

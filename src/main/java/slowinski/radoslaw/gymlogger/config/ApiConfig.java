@@ -9,17 +9,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
-import slowinski.radoslaw.gymlogger.workout.service.impl.TrainingFacadeImpl;
 
 
 @Configuration
-public class AppConfig {
-
-    @Bean
-    public TrainingFacade trainingFacade() {
-        return new TrainingFacadeImpl();
-    }
+public class ApiConfig {
 
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
