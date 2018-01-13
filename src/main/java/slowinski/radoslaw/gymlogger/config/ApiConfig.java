@@ -30,4 +30,5 @@ public class ApiConfig {
     public Authentication authentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }
+
 }

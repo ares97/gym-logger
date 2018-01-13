@@ -14,4 +14,6 @@ public interface UserService {
     void logoutUser(HttpServletRequest request, HttpServletResponse response);
 
     List<TrainingLogResponse> getTrainingLogs();
+
+    User getCurrentUser();
 }

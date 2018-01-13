@@ -3,8 +3,8 @@ package slowinski.radoslaw.gymlogger.workout.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
+import slowinski.radoslaw.gymlogger.exception.WorkoutNotFoundException;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
-import slowinski.radoslaw.gymlogger.workout.exception.WorkoutNotFoundException;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import slowinski.radoslaw.gymlogger.workout.repository.TrainingLogRepository;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingLogService;
@@ -43,8 +43,17 @@ public class TrainingLogServiceImpl implements TrainingLogService {
                 TrainingLogResponse.class);
     }
 
+
     @Override
     public void deleteTrainingLog(TrainingLog trainingLog) {
         trainingLogRepository.delete(trainingLog);
+    }
+
+    @Override
+    public TrainingLog getTrainingLog(Long trainingId) {
+        return Optional.ofNullable(
+                trainingLogRepository.
+                        findOne(trainingId)).
+                orElseThrow(() -> new WorkoutNotFoundException("could not find training log with id#" + trainingId));
     }
 }

@@ -14,4 +14,6 @@ public interface TrainingLogService {
     TrainingLogResponse getTrainingLogResponse(Long trainingId);
 
     void deleteTrainingLog(TrainingLog trainingLog);
+
+    TrainingLog getTrainingLog(Long trainingId);
 }

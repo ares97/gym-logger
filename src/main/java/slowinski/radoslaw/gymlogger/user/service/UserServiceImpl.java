@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getCurrentUser() {
+        return userRepository.findByUsername(authentication.getName());
+    }
+
+    @Override
     public void logoutUser(HttpServletRequest request, HttpServletResponse response) {
         Optional.ofNullable(authentication).
                 ifPresent(x -> new SecurityContextLogoutHandler().logout(request, response, x));

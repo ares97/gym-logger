@@ -1,5 +1,7 @@
 package slowinski.radoslaw.gymlogger.workout.entity;
 
+import slowinski.radoslaw.gymlogger.user.entity.User;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +16,18 @@ public class TrainingLog {
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "trainingLog")
     private List<ExerciseLog> exerciseLogs;
 
+    @ManyToOne
+    private User user;
+
     private LocalDate trainingDate;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

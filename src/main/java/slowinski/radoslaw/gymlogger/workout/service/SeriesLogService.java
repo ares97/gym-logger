@@ -11,4 +11,6 @@ public interface SeriesLogService {
     SeriesLogResponse getSeriesLogResponse(Long seriesId);
 
     void deleteSeriesLog(SeriesLog seriesLog);
+
+    SeriesLog getSeriesLog(Long seriesId);
 }
