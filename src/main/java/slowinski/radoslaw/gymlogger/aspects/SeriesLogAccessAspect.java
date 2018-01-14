@@ -33,7 +33,6 @@ public class SeriesLogAccessAspect {
 
     @Before("execution(* slowinski.radoslaw.gymlogger.workout.service.TrainingFacade.addSeriesLog(..)) && args(exerciseLog,..)")
     public void authoriseAddSeriesLog(ExerciseLog exerciseLog) {
-        System.out.println("DUPA");
         if (!exerciseLogAccessHandler.canAccessExerciseLog(exerciseLog.getId()))
             throw new ForbiddenDataAccessException();
     }
