@@ -12,9 +12,7 @@ import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,14 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<TrainingLogResponse> getTrainingLogs() {
-        User user = userRepository.findByUsername(authentication.getName());
-
-        return Optional.ofNullable(user).
-                map(u -> u.getTrainingLogs().
-                        stream().
-                        map(t -> conversionService.convert(t, TrainingLogResponse.class)).
-                        collect(Collectors.toList())).
-                orElse(Collections.emptyList());
+        return getCurrentUser().getTrainingLogs().
+                stream().
+                map(t -> conversionService.convert(t, TrainingLogResponse.class)).
+                collect(Collectors.toList());
     }
 
     @Override
@@ -57,9 +51,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Long getCurrentUserId() {
+        return getCurrentUser().getId();
+    }
+
+    @Override
     public void logoutUser(HttpServletRequest request, HttpServletResponse response) {
-        Optional.ofNullable(authentication).
-                ifPresent(x -> new SecurityContextLogoutHandler().logout(request, response, x));
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
     }
 
     private boolean usernameExists(String username) {

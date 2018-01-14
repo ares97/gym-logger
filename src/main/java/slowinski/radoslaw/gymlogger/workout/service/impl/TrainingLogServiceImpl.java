@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import slowinski.radoslaw.gymlogger.exception.WorkoutNotFoundException;
+import slowinski.radoslaw.gymlogger.user.service.UserService;
 import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import slowinski.radoslaw.gymlogger.workout.repository.TrainingLogRepository;
@@ -19,6 +20,8 @@ public class TrainingLogServiceImpl implements TrainingLogService {
     TrainingLogRepository trainingLogRepository;
     @Autowired
     ConversionService conversionService;
+    @Autowired
+    UserService userService;
 
     @Override
     public void update(TrainingLog trainingLog) {
@@ -29,6 +32,7 @@ public class TrainingLogServiceImpl implements TrainingLogService {
     public TrainingLogResponse createTrainingLog(LocalDate trainingDate) {
         TrainingLog trainingLog = new TrainingLog();
         trainingLog.setTrainingDate(trainingDate);
+        trainingLog.setUser(userService.getCurrentUser());
         trainingLogRepository.save(trainingLog);
 
         return conversionService.convert(trainingLog, TrainingLogResponse.class);

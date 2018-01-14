@@ -29,5 +29,5 @@ public interface TrainingFacade {
 
     void deleteSeriesLog(SeriesLog seriesLog);
 
-    List<TrainingLogResponse> getTrainingLogResponses();
+    List<TrainingLogResponse> getTrainingLogsForCurrentUser();
 }

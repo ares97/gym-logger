@@ -28,7 +28,7 @@ public class TrainingController {
 
     @GetMapping
     public ResponseEntity<List<TrainingLogResponse>> getTrainingLogs() {
-        List<TrainingLogResponse> logResponses = trainingFacade.getTrainingLogResponses();
+        List<TrainingLogResponse> logResponses = trainingFacade.getTrainingLogsForCurrentUser();
         return new ResponseEntity<>(logResponses, HttpStatus.OK);
     }
 
@@ -46,14 +46,12 @@ public class TrainingController {
             @RequestParam(name = "exercise", defaultValue = "exercise") String exerciseTitle,
             @PathVariable TrainingLog trainingLog) {
 
-        ExerciseLogResponse logResponse = trainingFacade.createExerciseLog(
-                exerciseTitle,
+        ExerciseLogResponse logResponse =
                 Optional.ofNullable(trainingLog).
-                        orElseThrow(
-                                () -> new WorkoutNotFoundException("could find training log with such id")));
+                        map(t -> trainingFacade.createExerciseLog(exerciseTitle, t)).
+                        orElseThrow(() -> new WorkoutNotFoundException("could find training log with such id"));
 
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
-
     }
 
     @PostMapping(ApiMappings.SERIES_LOG_MAPPING)
@@ -62,11 +60,10 @@ public class TrainingController {
             @RequestParam(name = "reps") Integer reps,
             @RequestParam(name = "weight") Float weight) {
 
-        SeriesLogResponse logResponse = trainingFacade.addSeriesLog(
+        SeriesLogResponse logResponse =
                 Optional.ofNullable(exerciseLog).
-                        orElseThrow(
-                                () -> new WorkoutNotFoundException("could find exercise log with such id")),
-                reps, weight);
+                        map(e -> trainingFacade.addSeriesLog(e, reps, weight)).
+                        orElseThrow(() -> new WorkoutNotFoundException("could find exercise log with such id"));
 
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
     }

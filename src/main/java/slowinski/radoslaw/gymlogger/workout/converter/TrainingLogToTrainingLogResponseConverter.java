@@ -10,9 +10,9 @@ import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TrainingLogToTrainingLogResponseConverter implements Converter<TrainingLog, TrainingLogResponse> {
 
@@ -35,13 +35,12 @@ public class TrainingLogToTrainingLogResponseConverter implements Converter<Trai
     }
 
     private List<ExerciseLogResponse> convertIntoExerciseLogResponse(List<ExerciseLog> exerciseLogs) {
-        List<ExerciseLogResponse> responseLogs = new LinkedList<>();
         ExerciseLogToExerciseLogResponseConverter converter = new ExerciseLogToExerciseLogResponseConverter();
-        for (ExerciseLog log : exerciseLogs) {
-            responseLogs.add(converter.convert(log));
-        }
 
-        return responseLogs;
+        return exerciseLogs.
+                stream().
+                map(converter::convert).
+                collect(Collectors.toList());
     }
 
     private Links getLinksToResponse(Long id) {

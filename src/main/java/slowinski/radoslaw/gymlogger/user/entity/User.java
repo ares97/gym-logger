@@ -20,7 +20,7 @@ public class User {
 
     private String role;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
     private List<TrainingLog> trainingLogs;
 
     public User() {

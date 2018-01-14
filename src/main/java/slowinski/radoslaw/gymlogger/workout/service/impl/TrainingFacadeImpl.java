@@ -75,7 +75,7 @@ public class TrainingFacadeImpl implements TrainingFacade {
     }
 
     @Override
-    public List<TrainingLogResponse> getTrainingLogResponses() {
+    public List<TrainingLogResponse> getTrainingLogsForCurrentUser() {
         return userService.getTrainingLogs();
     }
 }

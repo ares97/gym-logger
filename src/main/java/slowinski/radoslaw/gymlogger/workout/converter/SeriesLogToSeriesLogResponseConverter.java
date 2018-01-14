@@ -17,6 +17,7 @@ public class SeriesLogToSeriesLogResponseConverter implements Converter<SeriesLo
         seriesLogResponse.setReps(source.getReps());
         seriesLogResponse.setWeight(source.getWeight());
         seriesLogResponse.setExerciseLogId(source.getExerciseLog().getId());
+
         Links linksToResponse = getLinksToResponse(source.getId(), source.getExerciseLog().getId(), source.getExerciseLog().getTrainingLog().getId());
         seriesLogResponse.setLinks(linksToResponse);
 

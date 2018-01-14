@@ -10,9 +10,9 @@ import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ExerciseLogToExerciseLogResponseConverter implements Converter<ExerciseLog, ExerciseLogResponse> {
 
@@ -23,11 +23,13 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
         exerciseLogResponse.setId(source.getId());
         exerciseLogResponse.setTrainingLogId(source.getTrainingLog().getId());
         exerciseLogResponse.setExerciseTitle(source.getExerciseTitle());
+
         Links linksToResponse = getLinksToResponse(source.getId(), source.getTrainingLog().getId());
         exerciseLogResponse.setLinks(linksToResponse);
 
         exerciseLogResponse.setSeriesLogs(
-                Optional.ofNullable(source.getSeriesLogs()).
+                Optional.ofNullable(
+                        source.getSeriesLogs()).
                         map(this::convertIntoSeriesLogResponse).
                         orElse(Collections.emptyList()));
 
@@ -35,13 +37,13 @@ public class ExerciseLogToExerciseLogResponseConverter implements Converter<Exer
     }
 
     private List<SeriesLogResponse> convertIntoSeriesLogResponse(List<SeriesLog> seriesLogs) {
-        List<SeriesLogResponse> responseLogs = new LinkedList<>();
         SeriesLogToSeriesLogResponseConverter converter = new SeriesLogToSeriesLogResponseConverter();
-        for (SeriesLog log : seriesLogs) {
-            responseLogs.add(converter.convert(log));
-        }
 
-        return responseLogs;
+        return seriesLogs.
+                stream().
+                map(converter::convert).
+                collect(Collectors.toList());
+
     }
 
     private Links getLinksToResponse(Long exerciseId, Long trainingId) {

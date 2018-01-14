@@ -16,4 +16,6 @@ public interface UserService {
     List<TrainingLogResponse> getTrainingLogs();
 
     User getCurrentUser();
+
+    Long getCurrentUserId();
 }
