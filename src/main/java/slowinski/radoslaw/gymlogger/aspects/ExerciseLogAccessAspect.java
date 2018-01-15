@@ -12,7 +12,7 @@ import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 
 @Aspect
 @Component
-public class ExerciseLogAccessAspect {
+class ExerciseLogAccessAspect {
 
     @Autowired
     ExerciseLogAccessHandler exerciseLogAccessHandler;

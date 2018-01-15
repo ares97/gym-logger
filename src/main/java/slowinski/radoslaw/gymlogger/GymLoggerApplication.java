@@ -20,10 +20,6 @@ import java.util.Arrays;
 @SpringBootApplication
 public class GymLoggerApplication implements CommandLineRunner {
 
-    public static void main(String[] args) {
-        SpringApplication.run(GymLoggerApplication.class, args);
-    }
-
     @Autowired
     UserService userService;
     @Autowired
@@ -32,6 +28,10 @@ public class GymLoggerApplication implements CommandLineRunner {
     SeriesLogRepository seriesLogRepository;
     @Autowired
     TrainingLogRepository trainingLogRepository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(GymLoggerApplication.class, args);
+    }
 
     @Override
     public void run(String... args) {

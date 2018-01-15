@@ -12,7 +12,7 @@ import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
 
 @Aspect
 @Component
-public class SeriesLogAccessAspect {
+class SeriesLogAccessAspect {
 
     @Autowired
     SeriesLogAccessHandler seriesLogAccessHandler;

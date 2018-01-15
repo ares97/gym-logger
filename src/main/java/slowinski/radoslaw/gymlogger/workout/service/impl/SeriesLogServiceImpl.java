@@ -14,7 +14,7 @@ import slowinski.radoslaw.gymlogger.workout.service.SeriesLogService;
 import java.util.Optional;
 
 @Service
-public class SeriesLogServiceImpl implements SeriesLogService {
+class SeriesLogServiceImpl implements SeriesLogService {
 
     @Autowired
     SeriesLogRepository seriesLogRepository;

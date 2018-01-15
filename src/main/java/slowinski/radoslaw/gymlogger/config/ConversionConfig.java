@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Configuration
-public class ConversionConfig {
+class ConversionConfig {
 
     @Bean
     public Set<Converter> getConverters() {

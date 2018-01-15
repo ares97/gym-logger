@@ -12,7 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 
 @Configuration
-public class ApiConfig {
+class ApiConfig {
 
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();

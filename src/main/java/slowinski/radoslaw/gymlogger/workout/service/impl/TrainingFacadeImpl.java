@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class TrainingFacadeImpl implements TrainingFacade {
+class TrainingFacadeImpl implements TrainingFacade {
 
     @Autowired
     private TrainingLogService trainingLogService;

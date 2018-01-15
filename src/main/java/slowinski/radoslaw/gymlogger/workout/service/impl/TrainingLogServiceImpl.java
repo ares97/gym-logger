@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
-public class TrainingLogServiceImpl implements TrainingLogService {
+class TrainingLogServiceImpl implements TrainingLogService {
 
     @Autowired
     TrainingLogRepository trainingLogRepository;

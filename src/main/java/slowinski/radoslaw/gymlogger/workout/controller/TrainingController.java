@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(ApiMappings.LOGS_V1)
-public class TrainingController {
+class TrainingController {
 
     @Autowired
     TrainingFacade trainingFacade;
