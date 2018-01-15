@@ -30,9 +30,7 @@ class TrainingLogServiceImpl implements TrainingLogService {
 
     @Override
     public TrainingLogResponse createTrainingLog(LocalDate trainingDate) {
-        TrainingLog trainingLog = new TrainingLog();
-        trainingLog.setTrainingDate(trainingDate);
-        trainingLog.setUser(userService.getCurrentUser());
+        TrainingLog trainingLog = new TrainingLog(userService.getCurrentUser(), trainingDate);
         trainingLogRepository.save(trainingLog);
 
         return conversionService.convert(trainingLog, TrainingLogResponse.class);

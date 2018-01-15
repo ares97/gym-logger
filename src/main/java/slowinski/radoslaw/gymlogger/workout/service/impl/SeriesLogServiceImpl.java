@@ -26,10 +26,7 @@ class SeriesLogServiceImpl implements SeriesLogService {
 
     @Override
     public SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
-        SeriesLog seriesLog = new SeriesLog();
-        seriesLog.setReps(reps);
-        seriesLog.setWeight(weight);
-        seriesLog.setExerciseLog(exerciseLog);
+        SeriesLog seriesLog = new SeriesLog(weight, reps, exerciseLog);
         seriesLogRepository.save(seriesLog);
 
         exerciseLog.getSeriesLogs().add(seriesLog);

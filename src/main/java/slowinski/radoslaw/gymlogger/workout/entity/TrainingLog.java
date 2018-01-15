@@ -21,35 +21,27 @@ public class TrainingLog {
 
     private LocalDate trainingDate;
 
-    public User getUser() {
-        return user;
+    public TrainingLog() {
     }
 
-    public void setUser(User user) {
+    public TrainingLog(User user, LocalDate trainingDate) {
         this.user = user;
+        this.trainingDate = trainingDate;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public List<ExerciseLog> getExerciseLogs() {
         return exerciseLogs;
     }
 
-    public void setExerciseLogs(List<ExerciseLog> exerciseLogs) {
-        this.exerciseLogs = exerciseLogs;
+    public User getUser() {
+        return user;
     }
 
     public LocalDate getTrainingDate() {
         return trainingDate;
-    }
-
-    public void setTrainingDate(LocalDate trainingDate) {
-        this.trainingDate = trainingDate;
     }
 }

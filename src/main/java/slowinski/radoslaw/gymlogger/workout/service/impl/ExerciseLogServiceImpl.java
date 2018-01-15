@@ -26,9 +26,7 @@ class ExerciseLogServiceImpl implements ExerciseLogService {
 
     @Override
     public ExerciseLogResponse createExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
-        ExerciseLog exerciseLog = new ExerciseLog();
-        exerciseLog.setExerciseTitle(exerciseTitle);
-        exerciseLog.setTrainingLog(trainingLog);
+        ExerciseLog exerciseLog = new ExerciseLog(exerciseTitle, trainingLog);
         exerciseLogRepository.save(exerciseLog);
 
         trainingLog.getExerciseLogs().add(exerciseLog);

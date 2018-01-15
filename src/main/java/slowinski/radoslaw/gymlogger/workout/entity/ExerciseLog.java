@@ -17,35 +17,27 @@ public class ExerciseLog {
     @ManyToOne
     private TrainingLog trainingLog;
 
-    public TrainingLog getTrainingLog() {
-        return trainingLog;
-    }
-
-    public void setTrainingLog(TrainingLog trainingLog) {
+    public ExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
+        this.exerciseTitle = exerciseTitle;
         this.trainingLog = trainingLog;
     }
 
-    public String getExerciseTitle() {
-        return exerciseTitle;
-    }
-
-    public void setExerciseTitle(String exerciseTitle) {
-        this.exerciseTitle = exerciseTitle;
+    public ExerciseLog() {
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getExerciseTitle() {
+        return exerciseTitle;
     }
 
     public List<SeriesLog> getSeriesLogs() {
         return seriesLogs;
     }
 
-    public void setSeriesLogs(List<SeriesLog> seriesLogs) {
-        this.seriesLogs = seriesLogs;
+    public TrainingLog getTrainingLog() {
+        return trainingLog;
     }
 }

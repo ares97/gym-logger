@@ -19,35 +19,28 @@ public class SeriesLog {
     @ManyToOne
     private ExerciseLog exerciseLog;
 
-    public ExerciseLog getExerciseLog() {
-        return exerciseLog;
+    public SeriesLog(float weight, int reps, ExerciseLog exerciseLog) {
+        this.weight = weight;
+        this.reps = reps;
+        this.exerciseLog = exerciseLog;
     }
 
-    public void setExerciseLog(ExerciseLog exerciseLog) {
-        this.exerciseLog = exerciseLog;
+    public SeriesLog() {
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public float getWeight() {
         return weight;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
     }
 
     public int getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
-        this.reps = reps;
+    public ExerciseLog getExerciseLog() {
+        return exerciseLog;
     }
 }
