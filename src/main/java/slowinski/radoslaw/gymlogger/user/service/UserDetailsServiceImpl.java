@@ -11,7 +11,6 @@ import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.repository.UserRepository;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -25,9 +24,10 @@ class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUsername(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
-        grantedAuthorities.add(new SimpleGrantedAuthority(
-                Optional.ofNullable(user.getRole()).
-                        orElse("ROLE_USER")));
+        if (user == null)
+            throw new UsernameNotFoundException(username);
+
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(), user.getPassword(), grantedAuthorities);
