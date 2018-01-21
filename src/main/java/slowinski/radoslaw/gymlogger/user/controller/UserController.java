@@ -27,5 +27,11 @@ class UserController {
         userService.logoutUser(request, response);
     }
 
+    @GetMapping("/login")
+    public void logIn(HttpServletRequest request, HttpServletResponse response) {
+        userService.logoutUser(request, response);
+    }
+
+
 }
 

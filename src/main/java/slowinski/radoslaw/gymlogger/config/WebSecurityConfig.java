@@ -50,6 +50,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, ApiMappings.USER_V1 + "/registration").permitAll()
                 .antMatchers(HttpMethod.POST, ApiMappings.USER_V1 + "/login").permitAll()
+                .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
