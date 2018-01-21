@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import slowinski.radoslaw.gymlogger.user.converter.UserRegistrationRequestToUserConverter;
 import slowinski.radoslaw.gymlogger.workout.converter.ExerciseLogToExerciseLogResponseConverter;
 import slowinski.radoslaw.gymlogger.workout.converter.SeriesLogToSeriesLogResponseConverter;
-import slowinski.radoslaw.gymlogger.workout.converter.TrainingLogToTrainingLogResponseConverter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,8 @@ class ConversionConfig {
         Set<Converter> converters = new HashSet<>();
         converters.add(new SeriesLogToSeriesLogResponseConverter());
         converters.add(new ExerciseLogToExerciseLogResponseConverter());
-        converters.add(new TrainingLogToTrainingLogResponseConverter());
+        converters.add(new ExerciseLogToExerciseLogResponseConverter());
+        converters.add(new UserRegistrationRequestToUserConverter());
 
         return converters;
     }
