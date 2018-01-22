@@ -13,7 +13,7 @@ public interface TrainingLogService {
 
     TrainingLogResponse getTrainingLogResponse(Long trainingId);
 
-    void deleteTrainingLog(TrainingLog trainingLog);
+    void deleteTrainingLog(Long trainingLog);
 
     TrainingLog getTrainingLog(Long trainingId);
 }

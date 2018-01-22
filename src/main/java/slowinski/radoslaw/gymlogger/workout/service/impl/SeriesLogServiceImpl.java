@@ -25,7 +25,8 @@ class SeriesLogServiceImpl implements SeriesLogService {
 
 
     @Override
-    public SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
+    public SeriesLogResponse createSeriesLog(Long exerciseLogId, Integer reps, Float weight) {
+        ExerciseLog exerciseLog = exerciseLogService.getExerciseLog(exerciseLogId);
         SeriesLog seriesLog = new SeriesLog(weight, reps, exerciseLog);
         seriesLogRepository.save(seriesLog);
 
@@ -45,8 +46,12 @@ class SeriesLogServiceImpl implements SeriesLogService {
     }
 
     @Override
-    public void deleteSeriesLog(SeriesLog seriesLog) {
-        seriesLogRepository.delete(seriesLog);
+    public void deleteSeriesLog(Long seriesLogId) {
+        try {
+            seriesLogRepository.delete(seriesLogId);
+        } catch (IllegalArgumentException ex) {
+            throw new WorkoutNotFoundException("could find series log with id#" + seriesLogId);
+        }
     }
 
     @Override

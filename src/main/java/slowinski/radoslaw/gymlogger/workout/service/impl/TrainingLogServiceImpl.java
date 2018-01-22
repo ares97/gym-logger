@@ -47,8 +47,12 @@ class TrainingLogServiceImpl implements TrainingLogService {
 
 
     @Override
-    public void deleteTrainingLog(TrainingLog trainingLog) {
-        trainingLogRepository.delete(trainingLog);
+    public void deleteTrainingLog(Long trainingLogId) {
+        try {
+            trainingLogRepository.delete(trainingLogId);
+        } catch (IllegalArgumentException ex) {
+            throw new WorkoutNotFoundException("could not find training log with id#" + trainingLogId);
+        }
     }
 
     @Override
