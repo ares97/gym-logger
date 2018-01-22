@@ -1,11 +1,9 @@
 package slowinski.radoslaw.gymlogger.workout.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "seriesLog")
 public class SeriesLog {
 
     @GeneratedValue

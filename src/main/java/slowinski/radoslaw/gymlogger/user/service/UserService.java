@@ -1,6 +1,7 @@
 package slowinski.radoslaw.gymlogger.user.service;
 
 import slowinski.radoslaw.gymlogger.user.entity.User;
+import slowinski.radoslaw.gymlogger.user.model.request.UserRegistrationRequest;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void saveUserIfValid(User user);
+    void saveUserIfValid(UserRegistrationRequest user);
 
     void logoutUser(HttpServletRequest request, HttpServletResponse response);
 

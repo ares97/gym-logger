@@ -1,8 +1,5 @@
 package slowinski.radoslaw.gymlogger.workout.service;
 
-import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
-import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
-import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
@@ -11,9 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TrainingFacade {
-    SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight);
+    SeriesLogResponse createSeriesLog(Long exerciseLog, Integer reps, Float weight);
 
-    ExerciseLogResponse createExerciseLog(String exerciseTitle, TrainingLog trainingLog);
+    ExerciseLogResponse createExerciseLog(String exerciseTitle, Long trainingLogId);
 
     TrainingLogResponse createTrainingLog(LocalDate trainingDate);
 
@@ -23,11 +20,11 @@ public interface TrainingFacade {
 
     SeriesLogResponse getSeriesLogResponse(Long seriesId);
 
-    void deleteTrainingLog(TrainingLog trainingLog);
+    void deleteTrainingLog(Long trainingLog);
 
-    void deleteExerciseLog(ExerciseLog exerciseLog);
+    void deleteExerciseLog(Long exerciseLog);
 
-    void deleteSeriesLog(SeriesLog seriesLog);
+    void deleteSeriesLog(Long seriesLog);
 
     List<TrainingLogResponse> getTrainingLogsForCurrentUser();
 }

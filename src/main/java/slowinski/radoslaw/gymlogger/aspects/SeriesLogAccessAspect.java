@@ -31,7 +31,7 @@ class SeriesLogAccessAspect {
             throw new ForbiddenDataAccessException();
     }
 
-    @Before("execution(* slowinski.radoslaw.gymlogger.workout.service.TrainingFacade.addSeriesLog(..)) && args(exerciseLog,..)")
+    @Before("execution(* slowinski.radoslaw.gymlogger.workout.service.TrainingFacade.createSeriesLog(..)) && args(exerciseLog,..)")
     public void authoriseAddSeriesLog(ExerciseLog exerciseLog) {
         if (!exerciseLogAccessHandler.canAccessExerciseLog(exerciseLog.getId()))
             throw new ForbiddenDataAccessException();

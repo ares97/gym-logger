@@ -6,7 +6,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
+import slowinski.radoslaw.gymlogger.exception.UsernameAlreadyExistsException;
 import slowinski.radoslaw.gymlogger.user.entity.User;
+import slowinski.radoslaw.gymlogger.user.model.request.UserRegistrationRequest;
 import slowinski.radoslaw.gymlogger.user.repository.UserRepository;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 
@@ -31,10 +33,12 @@ class UserServiceImpl implements UserService {
     private Authentication authentication;
 
     @Override
-    public void saveUserIfValid(User user) {
-        if (!usernameExists(user.getUsername())) {
-            save(user);
+    public void saveUserIfValid(UserRegistrationRequest user) {
+        if (usernameExists(user.getUsername())) {
+            throw new UsernameAlreadyExistsException(user.getUsername());
         }
+
+        save(user);
     }
 
     @Override
@@ -66,7 +70,9 @@ class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username) != null;
     }
 
-    private void save(User user) {
+    private void save(UserRegistrationRequest userRegistrationRequest) {
+        User user = conversionService.convert(userRegistrationRequest, User.class);
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.saveAndFlush(user);
     }

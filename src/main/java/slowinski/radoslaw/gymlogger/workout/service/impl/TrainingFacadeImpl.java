@@ -3,9 +3,6 @@ package slowinski.radoslaw.gymlogger.workout.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
-import slowinski.radoslaw.gymlogger.workout.entity.ExerciseLog;
-import slowinski.radoslaw.gymlogger.workout.entity.SeriesLog;
-import slowinski.radoslaw.gymlogger.workout.entity.TrainingLog;
 import slowinski.radoslaw.gymlogger.workout.model.response.ExerciseLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
@@ -30,13 +27,13 @@ class TrainingFacadeImpl implements TrainingFacade {
     private UserService userService;
 
     @Override
-    public SeriesLogResponse addSeriesLog(ExerciseLog exerciseLog, Integer reps, Float weight) {
-        return seriesLogService.addSeriesLog(exerciseLog, reps, weight);
+    public SeriesLogResponse createSeriesLog(Long exerciseLogId, Integer reps, Float weight) {
+        return seriesLogService.createSeriesLog(exerciseLogId, reps, weight);
     }
 
     @Override
-    public ExerciseLogResponse createExerciseLog(String exerciseTitle, TrainingLog trainingLog) {
-        return exerciseLogService.createExerciseLog(exerciseTitle, trainingLog);
+    public ExerciseLogResponse createExerciseLog(String exerciseTitle, Long trainingLogId) {
+        return exerciseLogService.createExerciseLog(exerciseTitle, trainingLogId);
     }
 
     @Override
@@ -60,18 +57,18 @@ class TrainingFacadeImpl implements TrainingFacade {
     }
 
     @Override
-    public void deleteTrainingLog(TrainingLog trainingLog) {
+    public void deleteTrainingLog(Long trainingLog) {
         trainingLogService.deleteTrainingLog(trainingLog);
     }
 
     @Override
-    public void deleteExerciseLog(ExerciseLog exerciseLog) {
-        exerciseLogService.deleteExerciseLog(exerciseLog);
+    public void deleteExerciseLog(Long exerciseLogId) {
+        exerciseLogService.deleteExerciseLog(exerciseLogId);
     }
 
     @Override
-    public void deleteSeriesLog(SeriesLog seriesLog) {
-        seriesLogService.deleteSeriesLog(seriesLog);
+    public void deleteSeriesLog(Long seriesLogId) {
+        seriesLogService.deleteSeriesLog(seriesLogId);
     }
 
     @Override
