@@ -24,7 +24,7 @@ class UserController {
     }
 
     @GetMapping("/logout")
-    public void logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
         userService.logoutUser(request, response);
     }
 

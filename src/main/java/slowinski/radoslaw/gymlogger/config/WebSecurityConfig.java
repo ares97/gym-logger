@@ -18,8 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import slowinski.radoslaw.gymlogger.user.filters.JWTAuthenticationFilter;
-import slowinski.radoslaw.gymlogger.user.filters.JWTAuthorizationFilter;
 import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 
 @Configuration
@@ -54,8 +52,10 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                .httpBasic()
+                .and()
+                //.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                //.addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 

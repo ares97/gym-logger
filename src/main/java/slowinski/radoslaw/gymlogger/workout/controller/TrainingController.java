@@ -11,6 +11,7 @@ import slowinski.radoslaw.gymlogger.workout.model.response.SeriesLogResponse;
 import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import slowinski.radoslaw.gymlogger.workout.service.TrainingFacade;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,7 +25,7 @@ class TrainingController {
     @PostMapping(ApiMappings.TRAINING_LOG_MAPPING)
     public ResponseEntity<TrainingLogResponse> createAndGetTrainingLog(
             @RequestParam(name = "date")
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @Valid LocalDate localDate) {
 
         TrainingLogResponse logResponse = trainingFacade.createTrainingLog(localDate);
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);

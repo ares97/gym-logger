@@ -54,7 +54,7 @@ class ExerciseLogServiceImpl implements ExerciseLogService {
     public void deleteExerciseLog(Long exerciseLogId) {
         try {
             exerciseLogRepository.delete(exerciseLogId);
-        } catch (IllegalArgumentException ex) {
+        } catch (Exception ex) {
             throw new WorkoutNotFoundException("could not find exercise log with id#" + exerciseLogId);
         }
     }

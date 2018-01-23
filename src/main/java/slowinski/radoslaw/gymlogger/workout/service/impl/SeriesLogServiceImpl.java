@@ -49,7 +49,7 @@ class SeriesLogServiceImpl implements SeriesLogService {
     public void deleteSeriesLog(Long seriesLogId) {
         try {
             seriesLogRepository.delete(seriesLogId);
-        } catch (IllegalArgumentException ex) {
+        } catch (Exception ex) {
             throw new WorkoutNotFoundException("could find series log with id#" + seriesLogId);
         }
     }
