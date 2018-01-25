@@ -7,12 +7,10 @@ import slowinski.radoslaw.gymlogger.user.model.request.UserRegistrationRequest;
 import slowinski.radoslaw.gymlogger.user.service.UserService;
 import slowinski.radoslaw.gymlogger.utilities.ApiMappings;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(ApiMappings.USER_V1)
+@RequestMapping(ApiMappings.USER)
 class UserController {
     @Autowired
     private UserService userService;
@@ -23,10 +21,11 @@ class UserController {
         userService.saveUserIfValid(userRegistrationRequest);
     }
 
-    @GetMapping("/logout")
+    // while basic auth is being used this endpoint is redundant
+    /*@GetMapping("/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         userService.logoutUser(request, response);
     }
-
+*/
 }
 

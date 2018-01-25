@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
+import slowinski.radoslaw.gymlogger.exception.ForbiddenDataAccessException;
 import slowinski.radoslaw.gymlogger.exception.UsernameAlreadyExistsException;
 import slowinski.radoslaw.gymlogger.user.entity.User;
 import slowinski.radoslaw.gymlogger.user.model.request.UserRegistrationRequest;
@@ -15,6 +16,7 @@ import slowinski.radoslaw.gymlogger.workout.model.response.TrainingLogResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,7 +53,8 @@ class UserServiceImpl implements UserService {
 
     @Override
     public User getCurrentUser() {
-        return userRepository.findByUsername(authentication.getName());
+        return Optional.ofNullable(userRepository.findByUsername(authentication.getName())).
+                orElseThrow(ForbiddenDataAccessException::new);
     }
 
     @Override

@@ -46,7 +46,9 @@ public class TrainingLogToTrainingLogResponseConverter implements Converter<Trai
     private Links getLinksToResponse(Long id) {
         Links links = new Links();
         Self self = new Self();
-        self.setRef(ApiMappings.LOGS_V1 + ApiMappings.TRAINING_LOG_MAPPING + "/" + id);
+        self.setRef(ApiMappings.API_LOGS +
+                ApiMappings.API_GET_TRAINING.replace("{trainingLogId}", id.toString()));
+
         links.setSelf(self);
         return links;
     }

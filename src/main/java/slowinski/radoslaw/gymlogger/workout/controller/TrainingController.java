@@ -16,13 +16,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(ApiMappings.LOGS_V1)
+@RequestMapping(ApiMappings.API_LOGS)
 class TrainingController {
 
     @Autowired
     TrainingFacade trainingFacade;
 
-    @PostMapping(ApiMappings.TRAINING_LOG_MAPPING)
+    @PostMapping(ApiMappings.API_POST_TRAINING)
     public ResponseEntity<TrainingLogResponse> createAndGetTrainingLog(
             @RequestParam(name = "date")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @Valid LocalDate localDate) {
@@ -31,7 +31,7 @@ class TrainingController {
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
     }
 
-    @PostMapping(ApiMappings.EXERCISE_LOG_MAPPING)
+    @PostMapping(ApiMappings.API_POST_EXERCISE)
     public ResponseEntity<ExerciseLogResponse> createAndGetExerciseLog(
             @RequestParam(name = "title", defaultValue = "exercise") String exerciseTitle,
             @PathVariable Long trainingLogId) {
@@ -40,8 +40,8 @@ class TrainingController {
         return new ResponseEntity<>(logResponse, HttpStatus.CREATED);
     }
 
-    @PostMapping(ApiMappings.SERIES_LOG_MAPPING)
-    public ResponseEntity<SeriesLogResponse> createAndGetExerciseLog(
+    @PostMapping(ApiMappings.API_POST_SERIES)
+    public ResponseEntity<SeriesLogResponse> createAndGetSeriesLog(
             @PathVariable Long exerciseLogId,
             @RequestParam(name = "reps") Integer reps,
             @RequestParam(name = "weight") Float weight) {
@@ -56,35 +56,35 @@ class TrainingController {
         return new ResponseEntity<>(logResponses, HttpStatus.OK);
     }
 
-    @GetMapping(ApiMappings.TRAINING_LOG_MAPPING + "/{trainingId}")
-    public ResponseEntity<TrainingLogResponse> getTrainingLog(@PathVariable Long trainingId) {
-        TrainingLogResponse logResponse = trainingFacade.getTrainingLogResponse(trainingId);
+    @GetMapping(ApiMappings.API_GET_TRAINING)
+    public ResponseEntity<TrainingLogResponse> getTrainingLog(@PathVariable Long trainingLogId) {
+        TrainingLogResponse logResponse = trainingFacade.getTrainingLogResponse(trainingLogId);
         return new ResponseEntity<>(logResponse, HttpStatus.OK);
     }
 
-    @GetMapping(ApiMappings.EXERCISE_LOG_MAPPING + "/{exerciseId}")
-    public ResponseEntity<ExerciseLogResponse> getExerciseLog(@PathVariable Long exerciseId) {
-        ExerciseLogResponse logResponse = trainingFacade.getExerciseLogResponse(exerciseId);
+    @GetMapping(ApiMappings.API_GET_EXERCISE)
+    public ResponseEntity<ExerciseLogResponse> getExerciseLog(@PathVariable Long exerciseLogId) {
+        ExerciseLogResponse logResponse = trainingFacade.getExerciseLogResponse(exerciseLogId);
         return new ResponseEntity<>(logResponse, HttpStatus.OK);
     }
 
-    @GetMapping(ApiMappings.SERIES_LOG_MAPPING + "/{seriesId}")
-    public ResponseEntity<SeriesLogResponse> getSeriesLog(@PathVariable Long seriesId) {
-        SeriesLogResponse logResponse = trainingFacade.getSeriesLogResponse(seriesId);
+    @GetMapping(ApiMappings.API_GET_SERIES)
+    public ResponseEntity<SeriesLogResponse> getSeriesLog(@PathVariable Long seriesLogId) {
+        SeriesLogResponse logResponse = trainingFacade.getSeriesLogResponse(seriesLogId);
         return new ResponseEntity<>(logResponse, HttpStatus.OK);
     }
 
-    @DeleteMapping(ApiMappings.TRAINING_LOG_MAPPING + "/{trainingLogId}")
+    @DeleteMapping(ApiMappings.API_DELETE_TRAINING)
     public void deleteTrainingLog(@PathVariable Long trainingLogId) {
         trainingFacade.deleteTrainingLog(trainingLogId);
     }
 
-    @DeleteMapping(ApiMappings.EXERCISE_LOG_MAPPING + "/{exerciseLogId}")
+    @DeleteMapping(ApiMappings.API_DELETE_EXERCISE)
     public void deleteExerciseLog(@PathVariable Long exerciseLogId) {
         trainingFacade.deleteExerciseLog(exerciseLogId);
     }
 
-    @DeleteMapping(ApiMappings.SERIES_LOG_MAPPING + "/{seriesLogId}")
+    @DeleteMapping(ApiMappings.API_DELETE_SERIES)
     public void deleteSeriesLog(@PathVariable Long seriesLogId) {
         trainingFacade.deleteSeriesLog(seriesLogId);
     }
