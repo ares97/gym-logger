@@ -18,7 +18,8 @@ public class User {
 
     private String password;
 
-    private String role;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Role> role;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
     private List<TrainingLog> trainingLogs;
@@ -26,7 +27,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, List<Role> role) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -41,11 +42,11 @@ public class User {
         this.trainingLogs = trainingLogs;
     }
 
-    public String getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 
