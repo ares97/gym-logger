@@ -15,16 +15,5 @@ public class GymLoggerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GymLoggerApplication.class, args);
-        new GymLoggerApplication().pokeSecondServer();
-    }
-
-
-    private void pokeSecondServer(){
-        HttpRequest<String> httpRequest = HttpRequestBuilder
-                .createPost("https://gym-logger-poke.herokuapp.com/", String.class)
-                .responseDeserializer(ResponseDeserializer.ignorableDeserializer()).build();
-
-        Executors.newScheduledThreadPool(1)
-                .scheduleAtFixedRate(httpRequest::execute, 0, 360, TimeUnit.SECONDS);
     }
 }
